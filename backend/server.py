@@ -151,6 +151,46 @@ async def get_status_checks():
     
     return status_checks
 
+# Contact Form Endpoints
+@api_router.post("/contact", response_model=ContactSubmission)
+async def submit_contact_form(input: ContactSubmissionCreate):
+    """Handle contact form submission"""
+    # Rate limiting check
+    if not check_rate_limit(input.email):
+        raise HTTPException(
+            status_code=429,
+            detail="Too many submissions. Please try again later."
+        )
+    
+    # Create submission object
+    submission_dict = input.model_dump()
+    submission_obj = ContactSubmission(**submission_dict)
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = submission_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    # Save to database
+    await db.contact_submissions.insert_one(doc)
+    
+    # Send email notification (async, non-blocking)
+    await send_notification_email(submission_obj)
+    
+    logger.info(f"New contact submission received: {submission_obj.id}")
+    
+    return submission_obj
+
+@api_router.get("/contact/submissions", response_model=List[ContactSubmission])
+async def get_contact_submissions():
+    """Get all contact submissions (for admin use)"""
+    submissions = await db.contact_submissions.find({}, {"_id": 0}).to_list(1000)
+    
+    for submission in submissions:
+        if isinstance(submission['timestamp'], str):
+            submission['timestamp'] = datetime.fromisoformat(submission['timestamp'])
+    
+    return submissions
+
 # Include the router in the main app
 app.include_router(api_router)
 
