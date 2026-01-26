@@ -82,24 +82,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       className="min-h-screen bg-[#1a1a40] flex flex-col justify-center items-center relative overflow-visible"
-      style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=30')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundBlendMode: 'overlay',
-      }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#1a1a40]/85" />
-      
-      {/* Blueprint pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%234a90d9' stroke-width='0.5'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3Cpath d='M30 0v60M0 30h60'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
-
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-12 text-center hero-wrapper" style={{ overflow: 'visible' }}>
         {/* Main Headline - Grouped wrapper for hover interaction */}
         <div 
