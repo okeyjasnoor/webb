@@ -52,9 +52,18 @@ const Header = () => {
             <img
               src={siteConfig.logo}
               alt="MG Projects Logo"
-              className="logo-icon block"
+              className="logo-icon block md:hidden"
               style={{
                 height: '34px',
+                width: 'auto'
+              }}
+            />
+            <img
+              src={siteConfig.logo}
+              alt="MG Projects Logo"
+              className="logo-icon hidden md:block"
+              style={{
+                height: '42px',
                 width: 'auto'
               }}
             />
