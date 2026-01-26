@@ -34,8 +34,8 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-2'
-          : 'bg-transparent py-3'
+          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-1.5'
+          : 'bg-transparent py-2'
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -52,11 +52,7 @@ const Header = () => {
             <img
               src={siteConfig.logo}
               alt="MG Projects Logo"
-              className="logo-icon block"
-              style={{ 
-                width: 'clamp(36px, 4vw, 48px)', 
-                height: 'auto' 
-              }}
+              className="logo-icon block h-[34px] md:h-[42px] w-auto"
             />
             <div 
               className="logo-text text-white text-center uppercase"
@@ -65,7 +61,7 @@ const Header = () => {
                 fontWeight: 600,
                 letterSpacing: '0.5px',
                 fontSize: 'clamp(8px, 1vw, 10px)',
-                marginTop: '4px',
+                marginTop: '3px',
                 lineHeight: 1.2,
                 whiteSpace: 'nowrap'
               }}
