@@ -40,10 +40,10 @@ const Header = () => {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
-          {/* Logo Lockup - Compact Vertical Structure */}
+          {/* Logo - Enlarged */}
           <a 
             href="#" 
-            className="logo-lockup flex flex-col items-center group"
+            className="logo-lockup flex items-center group"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,35 +52,12 @@ const Header = () => {
             <img
               src={siteConfig.logo}
               alt="MG Projects Logo"
-              className="logo-icon block md:hidden"
+              className="logo-icon block"
               style={{
-                height: '34px',
+                height: '52px',
                 width: 'auto'
               }}
             />
-            <img
-              src={siteConfig.logo}
-              alt="MG Projects Logo"
-              className="logo-icon hidden md:block"
-              style={{
-                height: '42px',
-                width: 'auto'
-              }}
-            />
-            <div 
-              className="logo-text text-white text-center uppercase"
-              style={{ 
-                fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                fontWeight: 600,
-                letterSpacing: '0.5px',
-                fontSize: 'clamp(8px, 1vw, 10px)',
-                marginTop: '3px',
-                lineHeight: 1.2,
-                whiteSpace: 'nowrap'
-              }}
-            >
-              MG PROJECT & EXPERT SERVICES
-            </div>
           </a>
 
           {/* Desktop Navigation */}
