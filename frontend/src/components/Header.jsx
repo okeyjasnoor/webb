@@ -52,7 +52,11 @@ const Header = () => {
             <img
               src={siteConfig.logo}
               alt="MG Projects Logo"
-              className="logo-icon block h-[34px] md:h-[42px] w-auto"
+              className="logo-icon block"
+              style={{
+                height: '34px',
+                width: 'auto'
+              }}
             />
             <div 
               className="logo-text text-white text-center uppercase"
