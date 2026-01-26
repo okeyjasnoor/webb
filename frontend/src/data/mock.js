@@ -3,7 +3,7 @@
 export const siteConfig = {
   name: "MG PROJECT & EXPERT SERVICES",
   tagline: "Partnering for Progress, Delivering Excellence",
-  logo: "https://customer-assets.emergentagent.com/job_f67bdfa7-0cd7-4569-a079-d15329d17c4b/artifacts/w8gh5shq_icon%20%281%29.png",
+  logo: "https://customer-assets.emergentagent.com/job_construct-consult-3/artifacts/wh8kjzr4_image.png",
   founderImage: "https://customer-assets.emergentagent.com/job_f67bdfa7-0cd7-4569-a079-d15329d17c4b/artifacts/eg9v9q6c_1618753517367.jfif",
   contact: {
     phone: "+91 9667575628",
