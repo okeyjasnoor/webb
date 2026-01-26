@@ -34,13 +34,13 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-4'
+          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-2'
+          : 'bg-transparent py-3'
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
-          {/* Logo Lockup - Grouped Component */}
+          {/* Logo Lockup - Compact Vertical Structure */}
           <a 
             href="#" 
             className="logo-lockup flex flex-col items-center group"
@@ -54,7 +54,7 @@ const Header = () => {
               alt="MG Projects Logo"
               className="logo-icon block"
               style={{ 
-                width: 'clamp(56px, 6.5vw, 120px)', 
+                width: 'clamp(36px, 4vw, 48px)', 
                 height: 'auto' 
               }}
             />
@@ -63,13 +63,14 @@ const Header = () => {
               style={{ 
                 fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
                 fontWeight: 600,
-                letterSpacing: '0.6px',
-                fontSize: 'clamp(10px, 1.4vw, 14px)',
-                marginTop: '6px',
-                lineHeight: 1.2
+                letterSpacing: '0.5px',
+                fontSize: 'clamp(8px, 1vw, 10px)',
+                marginTop: '4px',
+                lineHeight: 1.2,
+                whiteSpace: 'nowrap'
               }}
             >
-              MG PROJECT &<br />EXPERT SERVICES
+              MG PROJECT & EXPERT SERVICES
             </div>
           </a>
 
@@ -84,7 +85,7 @@ const Header = () => {
                 style={{
                   fontWeight: 500,
                   letterSpacing: '1px',
-                  fontSize: '14px'
+                  fontSize: '13px'
                 }}
               >
                 {link.name}
