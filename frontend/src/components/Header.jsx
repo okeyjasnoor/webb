@@ -34,8 +34,8 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-1.5'
-          : 'bg-transparent py-2'
+          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-2'
+          : 'bg-transparent py-3'
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -54,7 +54,7 @@ const Header = () => {
               alt="MG Projects Logo"
               className="logo-icon block"
               style={{
-                height: '100px',
+                height: '80px',
                 width: 'auto'
               }}
             />
