@@ -54,7 +54,7 @@ const Header = () => {
               alt="MG Projects Logo"
               className="logo-icon block"
               style={{
-                height: '70px',
+                height: '100px',
                 width: 'auto'
               }}
             />
