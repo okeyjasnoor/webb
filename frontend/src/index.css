@@ -7,6 +7,7 @@
 :root {
   --bg-primary: #1a1a40;
   --bg-secondary: #12122e;
+  --accent: #8a6bd9;
   --accent-blue: #4a90d9;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -62,29 +63,85 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-blue);
+  background: var(--accent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5a9de9;
+  background: #9a7be9;
 }
 
-/* Hero text animation */
-.hero-line {
-  overflow: hidden;
+/* Logo lockup styles */
+.logo-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
 }
 
-.hero-line span {
-  display: inline-block;
-  transform: translateY(100%);
-  opacity: 0;
+.logo-icon {
+  width: clamp(56px, 6.5vw, 120px);
+  height: auto;
+  display: block;
 }
 
-.hero-line.animate span {
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+.logo-text {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  font-size: clamp(10px, 1.4vw, 14px);
+  text-transform: uppercase;
+  margin-top: 6px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Hero heading styles - prevent clipping */
+.hero-wrapper {
+  overflow: visible !important;
+}
+
+.hero-heading {
+  line-height: 1.16;
+  padding-bottom: 0.36em;
+  overflow: visible !important;
+  transition: transform 0.25s ease;
+}
+
+.hero-heading:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Hero emphasis - NOT italic, use weight and color */
+.hero-emphasis {
+  font-style: normal !important;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Navigation styles */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Service card hover */
@@ -107,30 +164,9 @@ body {
   will-change: transform;
 }
 
-/* Navigation styles */
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent-blue);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
 /* Button styles */
 .btn-primary {
-  background-color: var(--accent-blue);
+  background-color: var(--accent);
   color: white;
   padding: 14px 32px;
   border-radius: 4px;
@@ -139,7 +175,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #3a80c9;
+  background-color: #7a5bc9;
   transform: translateY(-2px);
 }
 
@@ -173,12 +209,16 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--accent-blue);
+  border-color: var(--accent);
   background: rgba(255, 255, 255, 0.08);
 }
 
 .form-input::placeholder {
   color: var(--text-muted);
+}
+
+.form-input.error {
+  border-color: #ef4444;
 }
 
 /* Reduced motion */
@@ -192,9 +232,12 @@ body {
     scroll-behavior: auto !important;
   }
   
-  .hero-line span {
-    transform: translateY(0);
-    opacity: 1;
+  .hero-heading {
+    transition: none !important;
+  }
+  
+  .hero-heading:hover {
+    transform: none !important;
   }
   
   .service-card:hover {
@@ -212,31 +255,24 @@ body {
   transform: translateX(0);
 }
 
-/* Image slider */
-.slider-container {
-  overflow: hidden;
-}
-
-.slider-track {
-  display: flex;
-  animation: slide 30s linear infinite;
-}
-
-@keyframes slide {
+/* Success animation */
+@keyframes successFadeIn {
   0% {
-    transform: translateX(0);
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
   }
   100% {
-    transform: translateX(-50%);
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
-.slider-track:hover {
-  animation-play-state: paused;
+.success-animation {
+  animation: successFadeIn 0.4s ease forwards;
 }
 
-/* Success animation */
-@keyframes successPulse {
+/* Success checkmark animation */
+@keyframes checkmarkPop {
   0% {
     transform: scale(0);
     opacity: 0;
@@ -250,8 +286,8 @@ body {
   }
 }
 
-.success-animation {
-  animation: successPulse 0.5s ease forwards;
+.checkmark-animation {
+  animation: checkmarkPop 0.5s ease forwards;
 }
 
 /* Custom focus styles for accessibility */
@@ -259,6 +295,13 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Ensure all interactive elements have visible focus */
+.hero-heading:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
 }

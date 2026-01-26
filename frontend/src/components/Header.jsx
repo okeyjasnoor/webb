@@ -34,36 +34,62 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-4'
-          : 'bg-transparent py-6'
+          ? 'bg-[#1a1a40]/95 backdrop-blur-md shadow-lg py-3'
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center">
+          {/* Logo Lockup - Grouped Component */}
+          <a 
+            href="#" 
+            className="logo-lockup flex flex-col items-center group"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img
               src={siteConfig.logo}
               alt="MG Projects Logo"
-              className={`transition-all duration-300 ${
-                isScrolled ? 'h-10' : 'h-12'
-              }`}
+              className="logo-icon block"
+              style={{ 
+                width: 'clamp(56px, 6.5vw, 120px)', 
+                height: 'auto' 
+              }}
             />
+            <div 
+              className="logo-text text-white text-center uppercase"
+              style={{ 
+                fontFamily: '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                fontWeight: 600,
+                letterSpacing: '0.6px',
+                fontSize: 'clamp(10px, 1.4vw, 14px)',
+                marginTop: '6px',
+                lineHeight: 1.2
+              }}
+            >
+              MG PROJECT &<br />EXPERT SERVICES
+            </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="nav-link text-white/90 hover:text-white font-medium tracking-wide text-sm uppercase"
+                className="nav-link text-white/90 hover:text-white uppercase"
+                style={{
+                  fontWeight: 500,
+                  letterSpacing: '1px',
+                  fontSize: '14px'
+                }}
               >
                 {link.name}
               </a>
-            ))}
-          </nav>
+            ))}n          </nav>
 
           {/* Mobile Menu Button */}
           <button
