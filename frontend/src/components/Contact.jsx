@@ -176,9 +176,9 @@ const Contact = () => {
             {isSuccess ? (
               <div
                 ref={successRef}
-                className="bg-[#12122e] rounded-2xl p-8 text-center"
+                className="success-animation bg-[#12122e] rounded-2xl p-8 text-center"
               >
-                <div className="success-animation inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6">
+                <div className="checkmark-animation inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6">
                   <CheckCircle size={40} className="text-green-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">
