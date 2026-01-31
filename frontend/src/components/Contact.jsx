@@ -95,49 +95,65 @@ const Contact = () => {
 
 
 
-      setIsSuccess(true);
+      const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      // Animate success
-      if (successRef.current) {
-        gsap.fromTo(
-          successRef.current,
-          { scale: 0, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
-        );
-      }
+  // Honeypot spam check
+  if (formData.honeypot) return;
 
-      // Reset form after delay
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          company: '',
-          email: '',
-          phone: '',
-          projectBrief: '',
-          consent: false,
-          honeypot: '',
-        });
-        setIsSuccess(false);
-      }, 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setErrors({ submit: 'Failed to submit. Please try again.' });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  if (!validateForm()) return;
+  setIsSubmitting(true);
+
+  try {
+    const formDataEncoded = new URLSearchParams();
+    formDataEncoded.append('form-name', 'contact');
+
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataEncoded.append(key, value);
+    });
+
+    await fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formDataEncoded.toString(),
+    });
+
+    setIsSuccess(true);
+
+    setTimeout(() => {
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        projectBrief: '',
+        consent: false,
+        honeypot: '',
+      });
+      setIsSuccess(false);
+    }, 5000);
+  } catch {
+    setErrors({ submit: 'Failed to submit. Please try again.' });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-    // Clear error on change
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
-  };
+  const { name, value, type, checked } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: type === 'checkbox' ? checked : value,
+  }));
+
+  if (errors[name]) {
+    setErrors((prev) => ({ ...prev, [name]: '' }));
+  }
+};
+
 
   return (
     <section id="contact" ref={sectionRef} className="py-24 bg-[#1a1a40]">
@@ -175,9 +191,7 @@ const Contact = () => {
   method="POST"
   data-netlify="true"
   netlify-honeypot="honeypot"
-  onSubmit={(e) => {
-    setIsSubmitting(true);
-  }}
+  onSubmit={handleSubmit}
   className="space-y-6"
 >
   <input type="hidden" name="form-name" value="contact" />
