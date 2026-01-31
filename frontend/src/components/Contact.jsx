@@ -98,48 +98,32 @@ const Contact = () => {
       const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Honeypot spam check
-  if (formData.honeypot) return;
-
   if (!validateForm()) return;
   setIsSubmitting(true);
 
   try {
-    const formDataEncoded = new URLSearchParams();
-    formDataEncoded.append('form-name', 'contact');
+    const data = new URLSearchParams();
+    data.append('form-name', 'contact');
 
     Object.entries(formData).forEach(([key, value]) => {
-      formDataEncoded.append(key, value);
+      data.append(key, value);
     });
 
     await fetch('/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formDataEncoded.toString(),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data.toString(),
     });
 
     setIsSuccess(true);
-
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        projectBrief: '',
-        consent: false,
-        honeypot: '',
-      });
-      setIsSuccess(false);
-    }, 5000);
+    setTimeout(() => setIsSuccess(false), 5000);
   } catch {
     setErrors({ submit: 'Failed to submit. Please try again.' });
   } finally {
     setIsSubmitting(false);
   }
 };
+
 
 
   const handleChange = (e) => {
