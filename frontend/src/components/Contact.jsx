@@ -126,6 +126,7 @@ const Contact = () => {
 
 
 
+
   const handleChange = (e) => {
   const { name, value, type, checked } = e.target;
   setFormData((prev) => ({
@@ -176,8 +177,8 @@ const Contact = () => {
   data-netlify="true"
   netlify-honeypot="honeypot"
   onSubmit={handleSubmit}
-  className="space-y-6"
 >
+
   <input type="hidden" name="form-name" value="contact" />
 
                 {/* Honeypot - hidden field */}
