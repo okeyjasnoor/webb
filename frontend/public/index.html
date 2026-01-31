@@ -18,7 +18,7 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
-        <title>Emergent | Fullstack App</title>
+        <title>MG Projects</title>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
@@ -45,6 +45,25 @@
         </script>
     </head>
     <body>
+        <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-honeypot="honeypot"
+  hidden
+>
+  <input type="hidden" name="form-name" value="contact" />
+
+  <!-- REQUIRED honeypot field -->
+  <input type="text" name="honeypot" />
+
+  <input type="text" name="name" />
+  <input type="text" name="company" />
+  <input type="email" name="email" />
+  <input type="tel" name="phone" />
+  <textarea name="projectBrief"></textarea>
+</form>
+
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
         <!--
