@@ -3,11 +3,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../data/mock';
 import { Phone, Mail, MapPin, CheckCircle, Loader2 } from 'lucide-react';
-import axios from 'axios';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 
 const Contact = () => {
   const sectionRef = useRef(null);
@@ -93,27 +93,7 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    // Honeypot check
-    if (formData.honeypot) {
-      console.log('Spam detected');
-      return;
-    }
-
-    if (!validateForm()) return;
-
-    setIsSubmitting(true);
-
-    try {
-      await axios.post(`${BACKEND_URL}/api/contact`, {
-        name: formData.name,
-        company: formData.company,
-        email: formData.email,
-        phone: formData.phone,
-        projectBrief: formData.projectBrief,
-      });
 
       setIsSuccess(true);
 
@@ -190,7 +170,18 @@ const Contact = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="honeypot"
+  onSubmit={(e) => {
+    setIsSubmitting(true);
+  }}
+  className="space-y-6"
+>
+  <input type="hidden" name="form-name" value="contact" />
+
                 {/* Honeypot - hidden field */}
                 <input
                   type="text"
@@ -319,19 +310,14 @@ const Contact = () => {
                 )}
 
                 <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary w-full md:w-auto flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 size={20} className="animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    'Submit'
-                  )}
-                </button>
+  type="submit"
+  disabled={isSubmitting}
+  className="btn-primary w-full md:w-auto"
+>
+  {isSubmitting ? 'Submitting...' : 'Submit'}
+</button>
+                <input type="hidden" name="success" value="true" />
+
               </form>
             )}
           </div>
