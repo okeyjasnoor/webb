@@ -43,7 +43,7 @@ export const services = [
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
     overview: "We provide forensic claims preparation, expert witness statements, and full claim packaging for arbitration and litigation. Our work supports counsels and claimants with clear, defensible schedules, document trails, and expert testimony.",
     deliverables: [
-      "Forensic delay analysis (time-impact and as-planned vs as-built)",
+      "Forensic delay analysis undertaken in accordance with the SCL Delay and Disruption Protocol, using the most appropriate methodology based on project records, data availability, and dispute context",
       "Quantum assessments: cost/time entitlement evaluations with audit-ready schedules",
       "Preparation of expert reports and joint statements suitable for arbitration/mediation",
       "Court/adjudicator-ready visual exhibits (timeline graphics, gantt snapshots, annotated baseline)"
